@@ -44,8 +44,6 @@ const sketch = ({ context }) => {
   const moonTexture2 = loader.load("eyeball.png");
   const moonTexture3 = loader.load("circless.png");
 
-
-
   // Setup a material
   const material = new THREE.MeshStandardMaterial({
     roughness: 1,
