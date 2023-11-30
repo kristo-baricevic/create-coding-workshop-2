@@ -1,4 +1,3 @@
-// Ensure ThreeJS is in global scope for the 'examples/'
 global.THREE = require("three");
 
 // Include any additional ThreeJS examples below
@@ -34,12 +33,27 @@ const sketch = ({ context }) => {
   const scene = new THREE.Scene();
 
   // Setup a geometry
-  const geometry = new THREE.SphereGeometry(1, 32, 16);
+  const geometry = new THREE.BoxGeometry(1, 1, 1);
+
+  const vortexShader = /* glsl */ `
+    varying vec2 vUv;
+    void main () {
+      vUv = uv;
+      gl_Position = projectionMatrix * modelViewMatrix * vec4(position.xyz, 1.0);
+    }
+  `;
+
+  const fragmentShader = /* glsl */ ` 
+    varying vec2 vUv;
+    void main () {
+      gl_FragColor = vec4(vec3(vUv.x), 1.0);
+    }
+  `;
 
   // Setup a material
-  const material = new THREE.MeshBasicMaterial({
-    color: "red",
-    wireframe: true
+  const material = new THREE.ShaderMaterial({
+    vortexShader,
+    fragmentShader 
   });
 
   // Setup a mesh with geometry + material

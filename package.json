@@ -1,6 +1,7 @@
 {
   "name": "workshop-webgl-glsl",
   "version": "1.0.0",
+  "type": "module",
   "description": "",
   "main": "index.js",
   "license": "MIT",
@@ -70,7 +71,7 @@
     "standardx": "^4.0.0"
   },
   "eslintConfig": {
-    "parser": "babel-eslint",
+    "parser": "@babel/babel-eslint",
     "parserOptions": {
       "ecmaFeatures": {
         "legacyDecorators": true
